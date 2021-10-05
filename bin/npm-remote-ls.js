@@ -23,6 +23,12 @@ var yargs = require('yargs')
       default: true,
       boolean: true
     })
+    .options('l', {
+      alias: 'license',
+      description: 'show license information',
+      default: false,
+      boolean: true
+    })    
     .options('o', {
       alias: 'optional',
       description: 'show optional dependencies',
@@ -55,6 +61,7 @@ var npa = require('npm-package-arg')
 require('../lib').config({
   verbose: argv.verbose,
   development: argv.development,
+  license: argv.license,
   optional: argv.optional,
   peer: argv.peer,
   registry: argv.registry
