@@ -102,6 +102,17 @@ ls('grunt-contrib-coffee', 'latest', true, function (obj) {
 })
 ```
 
+**Configure to return license information:**
+
+```javascript
+var ls = require('npm-remote-ls').ls
+var config = require('npm-remote-ls').config
+
+config({
+  license: true
+})
+```
+
 ## License
 
 ISC
