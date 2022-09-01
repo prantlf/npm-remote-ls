@@ -368,10 +368,11 @@ test('RemoteLS', function (t) {
         var ls = new RemoteLS()
 
         ls.ls('request', '*', function (res) {
-          res.should.deep.equal({ 'request@0.0.1': { '@example/lodash@0.0.2': {} } })
+          res.should.deep.equal({ 'request@0.0.1': { 'lodash@0.0.2': {} } })
+          // Calling t.end() after request and lodash done() reported "test unfinished".
+          setImmediate(() => t.end())
           request.done()
           lodash.done()
-          t.end()
         })
       })
     })

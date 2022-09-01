@@ -1,0 +1,4 @@
+reject:
+  - async
+  - registry-url
+  - tap

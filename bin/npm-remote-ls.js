@@ -2,6 +2,7 @@
 
 var yargs = require('yargs')
     .usage('$0 <pkg-name> [options]')
+    .version(false)
     .options('n', {
       alias: 'name',
       description: 'package name'
@@ -28,7 +29,7 @@ var yargs = require('yargs')
       description: 'show license information',
       default: false,
       boolean: true
-    })    
+    })
     .options('o', {
       alias: 'optional',
       description: 'show optional dependencies',
