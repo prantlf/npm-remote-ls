@@ -43,7 +43,7 @@ npm-remote-ls --help
 **Return dependency graph for `latest` version:**
 
 ```javascript
-var ls = require('npm-remote-ls').ls;
+import { ls } from '@prantlf/npm-remote-ls';
 
 ls('grunt', 'latest', function(obj) {
   console.log(obj);
@@ -53,7 +53,7 @@ ls('grunt', 'latest', function(obj) {
 **Return dependency graph for specific version:**
 
 ```javascript
-var ls = require('npm-remote-ls').ls;
+const { ls } = require('@prantlf/npm-remote-ls');
 
 ls('grunt', '0.1.0', function(obj) {
   console.log(obj);

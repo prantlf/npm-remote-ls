@@ -1,7 +1,0 @@
-extends:
-  - eslint-config-standard
-rules:
-  indent: off
-  n/no-callback-literal: off
-  no-var: off
-  object-shorthand: off

@@ -54,12 +54,12 @@ var yargs = require('yargs')
       boolean: true
     })
 var argv = yargs.argv
-var ls = require('../lib').ls
+var ls = require('../dist/index.cjs').ls
 var treeify = require('treeify')
 var spinner = require('char-spinner')
 var npa = require('npm-package-arg')
 
-require('../lib').config({
+require('../dist/index.cjs').config({
   verbose: argv.verbose,
   development: argv.development,
   license: argv.license,
