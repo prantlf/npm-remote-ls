@@ -52,5 +52,16 @@
     "semver": "^7.3.7",
     "treeify": "^1.1.0",
     "yargs": "^17.5.1"
+  },
+  "c8": {
+    "check-coverage": true,
+    "reporter": [
+      "text",
+      "lcov"
+    ],
+    "branches": 100,
+    "lines": 100,
+    "functions": 100,
+    "statements": 100
   }
 }

@@ -209,6 +209,52 @@ test('RemoteLS', function (t) {
       }, packageJson, function () {})
     })
 
+    t.test('should not push optionalDependencies to queue', function (t) {
+      var packageJson = JSON.parse(
+        fs.readFileSync('./test/fixtures/bacom.json').toString()
+      )
+      var ls = new RemoteLS({
+        dev: false,
+        optional: false,
+        queue: {
+          pause: function () {},
+          push: function (obj) {
+            t.not(obj.name, 'benchmark')
+          }
+        }
+      })
+
+      ls._walkDependencies({
+        name: 'bacom',
+        version: '0.6.0',
+        parent: ls.tree
+      }, packageJson, function () {})
+
+      t.end()
+    })
+
+    t.test('should include license information', function (t) {
+      var packageJson = JSON.parse(
+        fs.readFileSync('./test/fixtures/abbrev.json').toString()
+      )
+      var ls = new RemoteLS({
+        license: true,
+        queue: {
+          pause: function () {},
+          push: function () {}
+        }
+      })
+
+      ls._walkDependencies({
+        name: 'abbrev',
+        version: '*',
+        parent: ls.tree
+      }, packageJson, function () {})
+
+      t.equal(Object.keys(ls.flat).filter(key => key.includes('MIT')).length, 1)
+      t.end()
+    })
+
     t.end()
   })
 
@@ -276,6 +322,39 @@ test('RemoteLS', function (t) {
         request.done()
         lodash.done()
         t.end()
+      })
+    })
+
+    t.test('performs verbose logging', function (t) {
+      var request = nock('https://registry.npmjs.org')
+          .get('/request')
+          .reply(200, {
+            name: 'request',
+            versions: {
+              '0.0.1': {
+                dependencies: {
+                  lodash: '0.0.2'
+                }
+              }
+            }
+          })
+      var lodash = nock('https://registry.npmjs.org')
+          .get('/lodash')
+          .reply(200, {
+            name: 'lodash',
+            versions: {
+              '0.0.2': {
+                dependencies: {}
+              }
+            }
+          })
+      var ls = new RemoteLS({ verbose: true })
+
+      ls.ls('request', '*', function (res) {
+        res.should.deep.equal({ 'request@0.0.1': { 'lodash@0.0.2': {} } })
+        setImmediate(() => t.end())
+        request.done()
+        lodash.done()
       })
     })
 
