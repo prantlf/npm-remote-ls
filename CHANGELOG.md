@@ -1,3 +1,28 @@
+# [2.0.0](https://github.com/prantlf/npm-remote-ls/compare/v1.3.2...v2.0.0) (2022-09-02)
+
+
+### Bug Fixes
+
+* Support license as both string and object ([aa070e1](https://github.com/prantlf/npm-remote-ls/commit/aa070e1cc1c9cfbe4a727847f19a3d577c519105))
+* Upgrade NPM dependencies ([89646a6](https://github.com/prantlf/npm-remote-ls/commit/89646a602a4e888dabf386487593f1affcf99901))
+
+
+### chore
+
+* Fork the original project ([b99eea3](https://github.com/prantlf/npm-remote-ls/commit/b99eea344773b2c3d7b97e9d6df6a970888e5d1a))
+
+
+### Features
+
+* Export an ES module and TypeScript types ([6b261b9](https://github.com/prantlf/npm-remote-ls/commit/6b261b941e7112cd5e2c772c5ddf7c7c1a040dea))
+* list peer dependencies, defaults off ([#29](https://github.com/prantlf/npm-remote-ls/issues/29)) ([bc233b6](https://github.com/prantlf/npm-remote-ls/commit/bc233b6e15364c3868362030d5b00aa43cc48696))
+
+
+### BREAKING CHANGES
+
+* The package was renamed from npm-remote-ls to @prantlf/npm-remote-ls.
+* The minimum version of Node.js is 12.22. It wasn't clear in earlier releases, what the minimum version was.
+
 # Change Log
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
