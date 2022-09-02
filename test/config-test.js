@@ -1,5 +1,5 @@
 var test = require('tap').test
-var config = require('npm-remote-ls').config
+var config = require('@prantlf/npm-remote-ls').config
 
 require('chai').should()
 

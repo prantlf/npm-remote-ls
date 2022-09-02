@@ -1,16 +1,27 @@
-# npm-remote-ls
+# @prantlf/npm-remote-ls
 
-[![Build Status](https://travis-ci.org/npm/npm-remote-ls.png)](https://travis-ci.org/npm/npm-remote-ls)
-[![Coverage Status](https://coveralls.io/repos/npm/npm-remote-ls/badge.svg?branch=)](https://coveralls.io/r/npm/npm-remote-ls?branch=master)
-[![NPM version](https://img.shields.io/npm/v/npm-remote-ls.svg)](https://www.npmjs.com/package/npm-remote-ls)
-[![Standard Version](https://img.shields.io/badge/release-standard%20version-brightgreen.svg)](https://github.com/conventional-changelog/standard-version)
+[![Latest version](https://img.shields.io/npm/v/@prantlf/npm-remote-ls)
+ ![Dependency status](https://img.shields.io/librariesio/release/npm/@prantlf/npm-remote-ls)
+](https://www.npmjs.com/package/@prantlf/npm-remote-ls)
+[![Code coverage](https://codecov.io/gh/prantlf/npm-remote-ls/branch/master/graph/badge.svg)](https://codecov.io/gh/prantlf/npm-remote-ls)
 
 Examine a package's dependency graph before you install it.
+
+This is a fork of the original project ([npm/npm-remote-ls](https://github.com/npm/npm-remote-ls)) with the following enhancements:
+
+* Export an ES module for modern projects
+* Export TypeScript types for TypeScript projects
+* Depend on recent NPM packlages without security issues
+* Add option to show licence information (by Michael Hutcherson)
+* Show complete flattened list (by Roberto Aceves)
+* Add caching for network requests (by Jonathan Fielding)
+* Support scoped NPM packages (by Tommaso Allevi)
+* Prevent optional dependencies from being mixed into mandatory depednencies (by Tommaso Allevi)
 
 ## Installation
 
 ```bash
-npm install npm-remote-ls -g
+npm install @prantlf/npm-remote-ls -g
 ```
 
 ## Usage
@@ -63,7 +74,7 @@ ls('grunt', '0.1.0', function(obj) {
 **Return a flattened list of dependencies:**
 
 ```javascript
-var ls = require('npm-remote-ls').ls;
+var ls = require('@prantlf/npm-remote-ls').ls;
 
 ls('grunt', '0.1.0', true, function(obj) {
   console.log(obj);
@@ -73,8 +84,8 @@ ls('grunt', '0.1.0', true, function(obj) {
 **Configure to only return production dependencies:**
 
 ```javascript
-var ls = require('npm-remote-ls').ls
-var config = require('npm-remote-ls').config
+var ls = require('@prantlf/npm-remote-ls').ls
+var config = require('@prantlf/npm-remote-ls').config
 
 config({
   development: false,
@@ -89,8 +100,8 @@ ls('yargs', 'latest', true, function (obj) {
 **Configure to return peer dependencies:**
 
 ```javascript
-var ls = require('npm-remote-ls').ls
-var config = require('npm-remote-ls').config
+var ls = require('@prantlf/npm-remote-ls').ls
+var config = require('@prantlf/npm-remote-ls').config
 
 config({
   development: true,
@@ -105,8 +116,8 @@ ls('grunt-contrib-coffee', 'latest', true, function (obj) {
 **Configure to return license information:**
 
 ```javascript
-var ls = require('npm-remote-ls').ls
-var config = require('npm-remote-ls').config
+var ls = require('@prantlf/npm-remote-ls').ls
+var config = require('@prantlf/npm-remote-ls').config
 
 config({
   license: true

@@ -1,4 +1,4 @@
-import { RemoteLS, config, ls } from 'npm-remote-ls'
+import { RemoteLS, config, ls } from '@prantlf/npm-remote-ls'
 
 let _remoteLS: RemoteLS = new RemoteLS()
 

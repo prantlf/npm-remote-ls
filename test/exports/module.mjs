@@ -1,4 +1,4 @@
-import { RemoteLS, config, ls } from 'npm-remote-ls'
+import { RemoteLS, config, ls } from '@prantlf/npm-remote-ls'
 import { strictEqual } from 'assert'
 import tehanu from 'tehanu'
 

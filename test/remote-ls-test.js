@@ -1,7 +1,7 @@
 var test = require('tap').test
 var nock = require('nock')
 var fs = require('fs')
-var RemoteLS = require('npm-remote-ls').RemoteLS
+var RemoteLS = require('@prantlf/npm-remote-ls').RemoteLS
 
 require('chai').should()
 
