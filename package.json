@@ -1,6 +1,6 @@
 {
   "name": "@prantlf/npm-remote-ls",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Examine a package's dependency graph before you install it",
   "engines": {
     "node": ">= 12.22"
