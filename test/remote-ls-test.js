@@ -110,7 +110,8 @@ test('RemoteLS', function (t) {
             t.equal(obj.name, 'abbrev')
             t.equal(obj.version, '1')
             t.end()
-          }
+          },
+          error: () => {}
         }
       })
 
@@ -132,7 +133,8 @@ test('RemoteLS', function (t) {
             t.equal(obj.name, 'tap')
             t.equal(obj.version, '1.0.0')
             t.end()
-          }
+          },
+          error: () => {}
         }
       })
 
@@ -173,7 +175,8 @@ test('RemoteLS', function (t) {
           push: function () {
             t.fail('should not walk dependency')
             t.end()
-          }
+          },
+          error: () => {}
         }
       })
 
@@ -198,7 +201,8 @@ test('RemoteLS', function (t) {
             t.equal(obj.name, 'rxjs')
             t.equal(obj.version, '5.0.0-beta.6')
             t.end()
-          }
+          },
+          error: () => {}
         }
       })
 
@@ -220,7 +224,8 @@ test('RemoteLS', function (t) {
           pause: function () {},
           push: function (obj) {
             t.not(obj.name, 'benchmark')
-          }
+          },
+          error: () => {}
         }
       })
 
@@ -241,7 +246,8 @@ test('RemoteLS', function (t) {
         license: true,
         queue: {
           pause: function () {},
-          push: function () {}
+          push: function () {},
+          error: () => {}
         }
       })
 
