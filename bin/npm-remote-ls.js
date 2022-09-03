@@ -81,7 +81,7 @@ if (argv.help || !name) {
 } else {
   spinner()
   var parsed = npa(name)
-  ls(parsed.name, parsed.rawSpec || argv.version, argv.flatten, function (obj) {
+  ls(parsed.name, parsed.rawSpec || argv.version, argv.flatten, obj => {
     if (argv.json) console.log(JSON.stringify(obj))
     else if (Array.isArray(obj)) console.log(obj.join('\n'))
     else console.log(treeify.asTree(obj))

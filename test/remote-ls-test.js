@@ -170,7 +170,7 @@ test('RemoteLS', function (t) {
         },
         queue: {
           pause: function () {},
-          push: function (obj) {
+          push: function () {
             t.fail('should not walk dependency')
             t.end()
           }
@@ -396,10 +396,10 @@ test('RemoteLS', function (t) {
       var rc
       try {
         rc = require('registry-url/node_modules/rc/lib/utils')
-      } catch (e) { }
+      } catch { /* ignore */ }
       try {
         rc = require('rc/lib/utils')
-      } catch (e) { }
+      } catch { /* ignore */ }
       var oldRcFile = rc.file
       t.beforeEach(function (done) {
         rc.file = function () {

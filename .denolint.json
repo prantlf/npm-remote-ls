@@ -2,11 +2,7 @@
   "rules": {
     "tags": ["recommended"],
     "exclude": [
-      "ban-types",
-      "no-empty",
       "no-inner-declarations",
-      "no-this-alias",
-      "no-unused-vars",
       "no-var",
       "prefer-const"
     ]
