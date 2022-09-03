@@ -1,7 +1,7 @@
 const test = require('tehanu')(__filename)
 const nock = require('nock')
 const { deepStrictEqual, strictEqual } = require('assert')
-const { ls } = require('@prantlf/npm-remote-ls')
+const { config, ls } = require('@prantlf/npm-remote-ls')
 
 test('returns the latest version by default', () => {
   const request = nock('https://registry.npmjs.org')
@@ -77,12 +77,17 @@ test('supports Promise as a succeeding flattened result', async () => {
 
 test('supports Promise as a failing result', async () => {
   // uses cached mocks
-  const res = await ls('request', '0.0.2')
-  strictEqual(typeof res, 'object')
-  deepStrictEqual(res.packages, {})
-  strictEqual(typeof res.errors, 'object')
-  strictEqual(res.errors.length, 1)
-  strictEqual(typeof res.errors[0], 'object')
-  strictEqual(res.errors[0].message, 'could not find a satisfactory version for string 0.0.2')
-  deepStrictEqual(res.errors[0].module, { name: 'request', parent: {}, version: '0.0.2' })
+  config({ silent: true })
+  try {
+    const res = await ls('request', '0.0.2')
+    strictEqual(typeof res, 'object')
+    deepStrictEqual(res.packages, {})
+    strictEqual(typeof res.errors, 'object')
+    strictEqual(res.errors.length, 1)
+    strictEqual(typeof res.errors[0], 'object')
+    strictEqual(res.errors[0].message, 'could not find a satisfactory version for string 0.0.2')
+    deepStrictEqual(res.errors[0].module, { name: 'request', parent: {}, version: '0.0.2' })
+  } finally {
+    config({ silent: false })
+  }
 })

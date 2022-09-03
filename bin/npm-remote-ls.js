@@ -18,6 +18,7 @@ Options:
   -f, --flatten      print flat list of dependencies (default: false)
   -j, --json         print dependencies as JSON      (default: false)
   -e, --verbose      enable verbose logging          (default: false)
+  -i, --silent       suppress all logging            (default: false)
   -s, --strict       use non-zero exit code if fails (default: false)
   -V, --version      print version number
   -h, --help         print usage instructions
@@ -43,7 +44,7 @@ function showVersion() {
 const params = []
 let development = true
 let optional = true
-let registry, peer, license, flatten, json, verbose, strict
+let registry, peer, license, flatten, json, verbose, silent, strict
 
 const { argv } = process
 for (let i = 2, l = argv.length; i < l; ++i) {
@@ -88,6 +89,9 @@ for (let i = 2, l = argv.length; i < l; ++i) {
       case 'e': case 'E': case 'verbose':
         verbose = flag()
         continue
+      case 'i': case 'I': case 'silent':
+        silent = flag()
+        continue
       case 's': case 'S': case 'strict':
         strict = flag()
         continue
@@ -112,7 +116,7 @@ const { asTree } = require('treeify')
 const spinner = require('char-spinner')
 const npa = require('npm-package-arg')
 
-config({ registry, verbose, development, optional, peer, license })
+config({ registry, verbose, silent, development, optional, peer, license })
 
 spinner()
 const parsed = npa(name)

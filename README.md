@@ -66,6 +66,7 @@ Options:
   -f, --flatten      print flat list of dependencies (default: false)
   -j, --json         print dependencies as JSON      (default: false)
   -e, --verbose      enable verbose logging          (default: false)
+  -i, --silent       suppress all logging            (default: false)
   -s, --strict       use non-zero exit code if fails (default: false)
   -V, --version      print version number
   -h, --help         print usage instructions
@@ -158,15 +159,17 @@ ls('grunt-contrib-coffee', 'latest', true, function (packages) {
 
 **Configuration options:**
 
-| Name          | Type                   | Default   | Description                      |
-| ------------- | ---------------------- | --------- | -------------------------------- |
-| `logger`      | `{ log: msg => void }` | `console` | log errors and progress          |
+| Name          | Type                   | Default   | Description                        |
+| ------------- | ---------------------- | --------- | ---------------------------------- |
+| `logger`      | `{ log: msg => void }` | `console` | log errors and progress            |
 | `registry`    | `string`               | `'https://registry.npmjs.org'` | NPM registry URL |
-| `development` | `boolean`              | `true`    | include development dependencies |
-| `optional`    | `boolean`              | `true`    | include optional dependencies    |
-| `peer`        | `boolean`              | `false`   | include peer dependencies        |
-| `license`     | `boolean`              | `false`   | include license information      |
-| `verbose`     | `boolean`              | `false`   | log progress of package loading  |
+| `development` | `boolean`              | `true`    | include development dependencies   |
+| `optional`    | `boolean`              | `true`    | include optional dependencies      |
+| `peer`        | `boolean`              | `false`   | include peer dependencies          |
+| `license`     | `boolean`              | `false`   | include license information        |
+| `verbose`     | `boolean`              | `false`   | log progress of package loading    |
+| `silent`      | `boolean`              | `false`   | suppress error and verbose logging |
+| `strict`      | `boolean`              | `false`   | use non-zero exit code in case of failure |
 
 ## License
 
