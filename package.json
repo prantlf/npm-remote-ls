@@ -69,8 +69,7 @@
     "rc": "^1.2.8",
     "request": "^2.37.0",
     "semver": "^7.3.7",
-    "treeify": "^1.1.0",
-    "yargs": "^17.5.1"
+    "treeify": "^1.1.0"
   },
   "c8": {
     "check-coverage": true,

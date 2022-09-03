@@ -21,5 +21,3 @@ declare type Callback = (packages: Tree | string[], errors: Error[]) => void
 export function ls(name: string, version?: string | boolean | Callback, flatten?: boolean | Callback, cb?: Callback): Promise<{ packages: Tree | string[], errors: Error[] }> | void
 
 export function clearCache(): void
-
-export function getRegistry(scope?: string): string

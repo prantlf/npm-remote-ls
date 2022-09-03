@@ -49,20 +49,31 @@ There are various command line flags you can toggle for `npm-remote-ls`, for det
 ```
 npm-remote-ls --help
 
-npm-remote-ls <pkg-name> [options]
+Examine a package's dependency graph before you install it.
+
+Usage: npm-remote-ls [options] <name> [<version>]
+
+Parameters:
+  name     package name    (mandatory)
+  version  package version (default: "latest")
 
 Options:
-      --help         Show help                                         [boolean]
-  -n, --name         package name
-  -v, --version      package version                         [default: "latest"]
-  -e, --verbose      enable verbose logging           [boolean] [default: false]
-  -d, --development  show development dependencies     [boolean] [default: true]
-  -l, --license      show license information         [boolean] [default: false]
-  -o, --optional     show optional dependencies        [boolean] [default: true]
-  -p, --peer         show peer dependencies           [boolean] [default: false]
-  -r, --registry     set an alternative registry url    [default: as configured]
-  -f, --flatten      return flat list of dependencies [boolean] [default: false]
-  -j, --json         return dependencies as JSON      [boolean] [default: false]
+  -r, --registry     set an alternative registry url (default: as configured)
+  -d, --development  show development dependencies   (default: true)
+  -o, --optional     show optional dependencies      (default: true)
+  -p, --peer         show peer dependencies          (default: false)
+  -l, --license      show license information        (default: false)
+  -f, --flatten      print flat list of dependencies (default: false)
+  -j, --json         print dependencies as JSON      (default: false)
+  -e, --verbose      enable verbose logging          (default: false)
+  -V, --version      print version number
+  -h, --help         print usage instructions
+
+Examples:
+  npm-remote-ls grunt
+  npm-remote-ls grunt 0.1.0
+  npm-remote-ls grunt@0.1.0
+  npm-remote-ls -f grunt 0.1.0
 ```
 
 ## API
@@ -125,8 +136,8 @@ config({
   optional: false
 })
 
-ls('yargs', 'latest', true, function (obj) {
-  console.log(obj)
+ls('yargs', 'latest', true, function (packages) {
+  console.log(packages)
 })
 ```
 
@@ -139,8 +150,8 @@ config({
   peer: true
 })
 
-ls('grunt-contrib-coffee', 'latest', true, function (obj) {
-  console.log(obj)
+ls('grunt-contrib-coffee', 'latest', true, function (packages) {
+  console.log(packages)
 })
 ```
 
