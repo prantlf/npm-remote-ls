@@ -16,7 +16,7 @@ This is a fork of the original project ([npm/npm-remote-ls](https://github.com/n
 * Show complete flattened list (by Roberto Aceves)
 * Add caching for network requests (by Jonathan Fielding)
 * Support scoped NPM packages (by Tommaso Allevi)
-* Prevent optional dependencies from being mixed into mandatory depednencies (by Tommaso Allevi)
+* Prevent optional dependencies from being mixed into mandatory depednencies (by Daniel Lobato Garcia)
 
 ## Installation
 
