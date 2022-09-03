@@ -7,7 +7,7 @@
 * Upgrade NPM dependencies ([89646a6](https://github.com/prantlf/npm-remote-ls/commit/89646a602a4e888dabf386487593f1affcf99901))
 
 
-### chore
+### Chores
 
 * Fork the original project ([b99eea3](https://github.com/prantlf/npm-remote-ls/commit/b99eea344773b2c3d7b97e9d6df6a970888e5d1a))
 
@@ -23,12 +23,9 @@
 * The package was renamed from npm-remote-ls to @prantlf/npm-remote-ls.
 * The minimum version of Node.js is 12.22. It wasn't clear in earlier releases, what the minimum version was.
 
-# Change Log
-
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
 <a name="1.3.2"></a>
-## [1.3.2](https://github.com/npm/npm-remote-ls/compare/v1.3.1...v1.3.2) (2016-06-24)
+# [1.3.2](https://github.com/npm/npm-remote-ls/compare/v1.3.1...v1.3.2) (2016-06-24)
 
 
 ### Bug Fixes
@@ -36,15 +33,13 @@ All notable changes to this project will be documented in this file. See [standa
 * match * with dist-tags.latest for prerelease-only versions ([#26](https://github.com/npm/npm-remote-ls/issues/26)) ([9478a97](https://github.com/npm/npm-remote-ls/commit/9478a97))
 
 
-
 <a name="1.3.1"></a>
-## [1.3.1](https://github.com/npm/npm-remote-ls/compare/v1.3.0...v1.3.1) (2016-06-15)
+# [1.3.1](https://github.com/npm/npm-remote-ls/compare/v1.3.0...v1.3.1) (2016-06-15)
 
 
 ### Bug Fixes
 
 * support scoped packages via npm-package-arg ([#25](https://github.com/npm/npm-remote-ls/issues/25)) ([fdda84b](https://github.com/npm/npm-remote-ls/commit/fdda84b))
-
 
 
 <a name="1.3.0"></a>
