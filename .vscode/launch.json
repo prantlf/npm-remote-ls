@@ -12,6 +12,18 @@
         "<node_internals>/**"
       ],
       "program": "${file}"
+    },
+    {
+      "name": "bin",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/bin/npm-remote-ls.js",
+      "args": [
+        "-DPOfejl", "bacom"
+      ],
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
     }
   ]
 }
