@@ -3,7 +3,6 @@
     "tags": ["recommended"],
     "exclude": [
       "no-inner-declarations",
-      "no-var",
       "prefer-const"
     ]
   }

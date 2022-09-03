@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-var { getRegistry, ls } = require('../dist/index.cjs')
+const { config, getRegistry, ls } = require('../dist/index.cjs')
 
-var yargs = require('yargs')
+const yargs = require('yargs')
     .usage('$0 <pkg-name> [options]')
     .version(false)
     .options('n', {
@@ -61,12 +61,12 @@ var yargs = require('yargs')
       default: false,
       boolean: true
     })
-var argv = yargs.argv
-var treeify = require('treeify')
-var spinner = require('char-spinner')
-var npa = require('npm-package-arg')
+const argv = yargs.argv
+const { asTree } = require('treeify')
+const spinner = require('char-spinner')
+const npa = require('npm-package-arg')
 
-require('../dist/index.cjs').config({
+config({
   verbose: argv.verbose,
   development: argv.development,
   license: argv.license,
@@ -75,16 +75,16 @@ require('../dist/index.cjs').config({
   registry: argv.registry
 })
 
-var name = argv.name || argv._[0] || ''
+const name = argv.name || argv._[0] || ''
 
 if (argv.help || !name) {
   yargs.showHelp()
 } else {
   spinner()
-  var parsed = npa(name)
+  const parsed = npa(name)
   ls(parsed.name, parsed.rawSpec || argv.version, argv.flatten, obj => {
     if (argv.json) console.log(JSON.stringify(obj))
     else if (Array.isArray(obj)) console.log(obj.join('\n'))
-    else console.log(treeify.asTree(obj))
+    else console.log(asTree(obj))
   })
 }

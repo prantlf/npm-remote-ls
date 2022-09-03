@@ -67,7 +67,7 @@ Options:
 
 ## API
 
-**Return dependency graph for `latest` version:**
+**Return dependency graph for `latest` version (with await):**
 
 ```javascript
 import { ls } from '@prantlf/npm-remote-ls'
@@ -76,7 +76,7 @@ const { packages } = await ls('grunt')
 console.log(packages)
 ```
 
-**Return dependency graph for specific version:**
+**Return dependency graph for specific version (with promise):**
 
 ```javascript
 const { ls } = require('@prantlf/npm-remote-ls')
@@ -84,24 +84,13 @@ const { ls } = require('@prantlf/npm-remote-ls')
 ls('grunt', '0.1.0').then(packages => console.log(packages))
 ```
 
-**Return a flattened list of dependencies:**
-
-```javascript
-var ls = require('@prantlf/npm-remote-ls').ls
-
-ls('grunt', '0.1.0', true, function (packages) {
-  console.log(packages)
-})
-```
-
-**Check errors with a callback:**
+**Return a flattened list of dependencies (with callback):**
 
 ```javascript
 const { ls } = require('@prantlf/npm-remote-ls')
 
-ls('grunt', '10.0.0', true, (packages, errors) => {
-  console.log(packages)  // Array of packages may not be complete
-  console.log(errors)    // Array of Error instances
+ls('grunt', '0.1.0', true, function (packages) {
+  console.log(packages)
 })
 ```
 
@@ -113,6 +102,17 @@ import { ls } from '@prantlf/npm-remote-ls'
 const { packages, errors } = await ls('grunt', '10.0.0', true)
 console.log(packages)  // Array of packages may not be complete
 console.log(errors)    // Array of Error instances
+```
+
+**Check errors with a callback:**
+
+```javascript
+const { ls } = require('@prantlf/npm-remote-ls')
+
+ls('grunt', '10.0.0', true, (packages, errors) => {
+  console.log(packages)  // Array of packages may not be complete
+  console.log(errors)    // Array of Error instances
+})
 ```
 
 **Configure to only return production dependencies:**
@@ -133,8 +133,7 @@ ls('yargs', 'latest', true, function (obj) {
 **Configure to return peer dependencies:**
 
 ```javascript
-var ls = require('@prantlf/npm-remote-ls').ls
-var config = require('@prantlf/npm-remote-ls').config
+const { config, ls } = require('@prantlf/npm-remote-ls')
 
 config({
   peer: true
