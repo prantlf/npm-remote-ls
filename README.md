@@ -160,17 +160,26 @@ ls('grunt-contrib-coffee', 'latest', true, function (packages) {
 
 **Configuration options:**
 
-| Name          | Type                   | Default   | Description                               |
-| ------------- | ---------------------- | --------- | ----------------------------------------- |
-| `logger`      | `{ log: msg => void }` | `console` | log errors and progress                   |
-| `registry`    | `string`               | `'https://registry.npmjs.org'` | NPM registry URL     |
-| `development` | `boolean`              | `true`    | include development dependencies          |
-| `optional`    | `boolean`              | `true`    | include optional dependencies             |
-| `peer`        | `boolean`              | `false`   | include peer dependencies                 |
-| `license`     | `boolean`              | `false`   | include license information               |
-| `verbose`     | `boolean`              | `false`   | log progress of package loading           |
-| `silent`      | `boolean`              | `false`   | suppress error and verbose logging        |
-| `strict`      | `boolean`              | `false`   | use non-zero exit code in case of failure |
+| Name          | Type      | Default   | Description                                  |
+| ------------- | --------- | --------- | -------------------------------------------- |
+| `logger`      | `object`  | `console` | log errors and progress                      |
+| `registry`    | `string`  | `'https://registry.npmjs.org'` | NPM registry URL        |
+| `development` | `boolean` | `true`    | include development dependencies             |
+| `optional`    | `boolean` | `true`    | include optional dependencies                |
+| `peer`        | `boolean` | `false`   | include peer dependencies                    |
+| `license`     | `boolean` | `false`   | include license information                  |
+| `verbose`     | `boolean` | `false`   | log progress of package loading              |
+| `silent`      | `boolean` | `false`   | suppress error and verbose logging           |
+| `strict`      | `boolean` | `false`   | return non-zero exit code in case of failure |
+
+A custom `logger` object needs to implement the following interface:
+
+```ts
+{
+  debug: (msg: string) => void
+  error: (msg: string) => void
+}
+```
 
 ## Contributing
 
