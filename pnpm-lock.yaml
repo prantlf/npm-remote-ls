@@ -9,7 +9,6 @@ specifiers:
   c8: ^7.12.0
   cacheman: ^2.2.1
   char-spinner: ^1.0.1
-  lodash: ^4.17.21
   nock: ^13.2.9
   npm-package-arg: ^9.1.0
   once: ^1.4.0
@@ -30,7 +29,6 @@ dependencies:
   async: 3.2.4
   cacheman: 2.2.1
   char-spinner: 1.0.1
-  lodash: 4.17.21
   npm-package-arg: 9.1.0
   once: 1.4.0
   registry-url: 5.1.0
@@ -789,6 +787,7 @@ packages:
 
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+    dev: true
 
   /lru-cache/4.1.5:
     resolution: {integrity: sha512-sWZlbEP2OsHNkXrMl5GYk/jKk70MBng6UU4YI/qGDYbgf6YbP4EvmqISbXCoJiRKs+1bSpFHVgQxvJ17F2li5g==}
