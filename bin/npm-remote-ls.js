@@ -18,6 +18,7 @@ Options:
   -f, --flatten      print flat list of dependencies (default: false)
   -j, --json         print dependencies as JSON      (default: false)
   -e, --verbose      enable verbose logging          (default: false)
+  -s, --strict       use non-zero exit code if fails (default: false)
   -V, --version      print version number
   -h, --help         print usage instructions
 
@@ -42,7 +43,7 @@ function showVersion() {
 const params = []
 let development = true
 let optional = true
-let registry, peer, license, flatten, json, verbose
+let registry, peer, license, flatten, json, verbose, strict
 
 const { argv } = process
 for (let i = 2, l = argv.length; i < l; ++i) {
@@ -87,6 +88,9 @@ for (let i = 2, l = argv.length; i < l; ++i) {
       case 'e': case 'E': case 'verbose':
         verbose = flag()
         continue
+      case 's': case 'S': case 'strict':
+        strict = flag()
+        continue
       case 'V': case 'version':
         showVersion()
         continue
@@ -112,8 +116,9 @@ config({ registry, verbose, development, optional, peer, license })
 
 spinner()
 const parsed = npa(name)
-ls(name, parsed.rawSpec || version, flatten, packages => {
+ls(name, parsed.rawSpec || version, flatten, (packages, errors) => {
   console.log(json ? JSON.stringify(packages) :
     Array.isArray(packages) ? packages.join('\n') :
     asTree(packages))
+  if (errors.length && strict) process.exit(1)
 })

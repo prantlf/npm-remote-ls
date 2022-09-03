@@ -66,6 +66,7 @@ Options:
   -f, --flatten      print flat list of dependencies (default: false)
   -j, --json         print dependencies as JSON      (default: false)
   -e, --verbose      enable verbose logging          (default: false)
+  -s, --strict       use non-zero exit code if fails (default: false)
   -V, --version      print version number
   -h, --help         print usage instructions
 
