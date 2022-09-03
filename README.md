@@ -60,7 +60,7 @@ Options:
   -l, --license      show license information         [boolean] [default: false]
   -o, --optional     show optional dependencies        [boolean] [default: true]
   -p, --peer         show peer dependencies           [boolean] [default: false]
-  -r, --registry     set an alternative registry url   [default: (registry-url)]
+  -r, --registry     set an alternative registry url    [default: as configured]
   -f, --flatten      return flat list of dependencies [boolean] [default: false]
   -j, --json         return dependencies as JSON      [boolean] [default: false]
 ```

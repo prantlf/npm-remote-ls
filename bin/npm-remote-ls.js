@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+var { getRegistry, ls } = require('../dist/index.cjs')
+
 var yargs = require('yargs')
     .usage('$0 <pkg-name> [options]')
     .version(false)
@@ -45,7 +47,7 @@ var yargs = require('yargs')
     .options('r', {
       alias: 'registry',
       description: 'set an alternative registry url',
-      default: require('registry-url')
+      default: getRegistry()
     })
     .options('f', {
       alias: 'flatten',
@@ -60,7 +62,6 @@ var yargs = require('yargs')
       boolean: true
     })
 var argv = yargs.argv
-var ls = require('../dist/index.cjs').ls
 var treeify = require('treeify')
 var spinner = require('char-spinner')
 var npa = require('npm-package-arg')

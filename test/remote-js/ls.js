@@ -1,6 +1,5 @@
 const test = require('tehanu')(__filename)
 const nock = require('nock')
-const rc = require('rc/lib/utils')
 const { deepStrictEqual, match, ok, strictEqual } = require('assert')
 const { clearCache, RemoteLS } = require('@prantlf/npm-remote-ls')
 
@@ -152,25 +151,6 @@ test('supports scoped packages', () => {
       resolve()
     })
   })
-})
-
-test('supports mixed custom scoped packages', async () => {
-  const oldRcFile = rc.file
-  rc.file = () => '@example:registry = https://example.org'
-
-  try {
-    await new Promise(resolve => {
-      // uses cached mocks
-      const ls = new RemoteLS()
-
-      ls.ls('request', '*', function (res) {
-        deepStrictEqual(res, { 'request@0.0.1': { 'lodash@0.0.2': {} } })
-        resolve()
-      })
-    })
-  } finally {
-    rc.file = oldRcFile
-  }
 })
 
 test('supports Promise with a succeeding result', async () => {
