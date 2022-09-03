@@ -4,7 +4,7 @@ let _remoteLS: RemoteLS = new RemoteLS()
 
 const _config: Options = config()
 config({})
-config({ logger: { log: (_msg: string) => {} } })
+config({ logger: { debug: (_msg: string) => {}, error: (_msg: string) => {} } })
 config({ registry: '' })
 config({ development: false })
 config({ optional: false })

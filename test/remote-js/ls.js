@@ -13,8 +13,8 @@ test('handles a 404 and prints an appropriate message', () => {
     const ls = new RemoteLS({
       registry: 'https://skimdb.npmjs.com/registry/',
       logger: {
-        log: msg => {
-          match(msg, /status = 404/)
+        error: msg => {
+          match(msg, /status 404/)
         }
       }
     })
@@ -33,8 +33,8 @@ test('defaults to appropriate registry URL', () => {
         .reply(404)
     const ls = new RemoteLS({
       logger: {
-        log: msg => {
-          match(msg, /status = 404/)
+        error: msg => {
+          match(msg, /status 404/)
         }
       }
     })

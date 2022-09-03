@@ -1,5 +1,10 @@
+interface Logger {
+  debug: (msg: string) => void
+  error: (msg: string) => void
+}
+
 interface Options {
-  logger?: { log: (msg: string) => void } /* console */
+  logger?: Logger /* console */
   registry?: string               /* 'https://registry.npmjs.org' */
   development?: boolean           /* true */
   optional?: boolean              /* true */
