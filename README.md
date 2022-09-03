@@ -71,9 +71,8 @@ Options:
 ```javascript
 import { ls } from '@prantlf/npm-remote-ls';
 
-ls('grunt', 'latest', function(obj) {
-  console.log(obj);
-});
+const obj = await ls('grunt', 'latest');
+console.log(obj);
 ```
 
 **Return dependency graph for specific version:**
@@ -81,9 +80,7 @@ ls('grunt', 'latest', function(obj) {
 ```javascript
 const { ls } = require('@prantlf/npm-remote-ls');
 
-ls('grunt', '0.1.0', function(obj) {
-  console.log(obj);
-});
+ls('grunt', '0.1.0').then(obj => console.log(obj));
 ```
 
 **Return a flattened list of dependencies:**

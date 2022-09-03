@@ -326,35 +326,22 @@ test('RemoteLS', function (t) {
     })
 
     t.test('performs verbose logging', function (t) {
-      var request = nock('https://registry.npmjs.org')
-          .get('/request')
-          .reply(200, {
-            name: 'request',
-            versions: {
-              '0.0.1': {
-                dependencies: {
-                  lodash: '0.0.2'
-                }
-              }
-            }
-          })
-      var lodash = nock('https://registry.npmjs.org')
-          .get('/lodash')
-          .reply(200, {
-            name: 'lodash',
-            versions: {
-              '0.0.2': {
-                dependencies: {}
-              }
-            }
-          })
+      // uses cached mocks
       var ls = new RemoteLS({ verbose: true })
 
       ls.ls('request', '*', function (res) {
         res.should.deep.equal({ 'request@0.0.1': { 'lodash@0.0.2': {} } })
-        setImmediate(() => t.end())
-        request.done()
-        lodash.done()
+        t.end()
+      })
+    })
+
+    t.test('fails silently for invalid version', function (t) {
+      // uses cached mocks
+      var ls = new RemoteLS({ verbose: true })
+
+      ls.ls('request', '0.0.2', function (res) {
+        res.should.deep.equal({})
+        t.end()
       })
     })
 
@@ -422,37 +409,23 @@ test('RemoteLS', function (t) {
       })
 
       t.test('ok', function (t) {
-        var request = nock('https://registry.npmjs.org')
-            .get('/request')
-            .reply(200, {
-              name: 'request',
-              versions: {
-                '0.0.1': {
-                  dependencies: {
-                    '@example/lodash': '0.0.2'
-                  }
-                }
-              }
-            })
-        var lodash = nock('https://example.org')
-            .get('/@example%2flodash')
-            .reply(200, {
-              name: '@example/lodash',
-              versions: {
-                '0.0.2': {
-                  dependencies: {}
-                }
-              }
-            })
+        // uses cached mocks
         var ls = new RemoteLS()
 
         ls.ls('request', '*', function (res) {
           res.should.deep.equal({ 'request@0.0.1': { 'lodash@0.0.2': {} } })
-          // Calling t.end() after request and lodash done() reported "test unfinished".
-          setImmediate(() => t.end())
-          request.done()
-          lodash.done()
+          t.end()
         })
+      })
+    })
+
+    t.test('supports Promise as a result', function (t) {
+      // uses cached mocks
+      var ls = new RemoteLS()
+
+      ls.ls('request', '*').then(function (res) {
+        res.should.deep.equal({ 'request@0.0.1': { 'lodash@0.0.2': {} } })
+        t.end()
       })
     })
 
