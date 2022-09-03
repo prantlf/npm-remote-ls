@@ -331,6 +331,7 @@ test('RemoteLS', function (t) {
 
       ls.ls('request', '*', function (res) {
         res.should.deep.equal({ 'request@0.0.1': { 'lodash@0.0.2': {} } })
+        ls.errors.should.deep.equal([])
         t.end()
       })
     })
@@ -341,6 +342,9 @@ test('RemoteLS', function (t) {
 
       ls.ls('request', '0.0.2', function (res) {
         res.should.deep.equal({})
+        ls.errors.length.should.equal(1)
+        ls.errors[0].message.should.equal('could not find a satisfactory version for string 0.0.2')
+        ls.errors[0].module.should.deep.equal({ name: 'request', parent: {}, version: '0.0.2' })
         t.end()
       })
     })
@@ -419,12 +423,26 @@ test('RemoteLS', function (t) {
       })
     })
 
-    t.test('supports Promise as a result', function (t) {
+    t.test('supports Promise with a succeeding result', function (t) {
       // uses cached mocks
       var ls = new RemoteLS()
 
       ls.ls('request', '*').then(function (res) {
         res.should.deep.equal({ 'request@0.0.1': { 'lodash@0.0.2': {} } })
+        ls.errors.length.should.equal(0)
+        t.end()
+      })
+    })
+
+    t.test('supports Promise as a failing result', function (t) {
+      // uses cached mocks
+      var ls = new RemoteLS()
+
+      ls.ls('request', '0.0.2').then(function (res) {
+        res.should.deep.equal({})
+        ls.errors.length.should.equal(1)
+        ls.errors[0].message.should.equal('could not find a satisfactory version for string 0.0.2')
+        ls.errors[0].module.should.deep.equal({ name: 'request', parent: {}, version: '0.0.2' })
         t.end()
       })
     })

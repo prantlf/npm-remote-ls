@@ -1,9 +1,21 @@
-export class RemoteLS {
-  constructor(options?: {})
+interface Options {
+  logger?: { log: (msg: string) => void } /* console */
+  registry?: string               /* 'https://registry.npmjs.org' */
+  development?: boolean           /* true */
+  optional?: boolean              /* true */
+  peer?: boolean                  /* false */
+  license?: boolean               /* false */
+  verbose?: boolean               /* false */
 }
 
-export function config(options?: {}): {}
+export class RemoteLS {
+  constructor(options?: Options)
+}
 
-declare type Callback = (deps: [] | {}) => void
+export function config(options?: Options): Options
 
-export function ls(name: string, version?: string | boolean | Callback, flatten?: boolean | Callback, cb?: Callback): string
+declare type Tree = { [pkg: string]: Tree }
+
+declare type Callback = (packages: Tree | string[], errors: Error[]) => void
+
+export function ls(name: string, version?: string | boolean | Callback, flatten?: boolean | Callback, cb?: Callback): Promise<{ packages: Tree | string[], errors: Error[] }> | void

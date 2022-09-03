@@ -22,9 +22,9 @@
   ],
   "scripts": {
     "prepare": "rollup -c",
-    "lint": "denolint && tsc --noEmit test/exports/types.ts",
+    "lint": "denolint && tsc --noEmit test/exports/types-test.ts",
     "check": "teru-esm test/exports/*.mjs && tap test/*.js",
-    "test": "denolint && tsc --noEmit test/exports/types.ts && teru-esm test/exports/*.mjs && c8 npx tap test/*.js"
+    "test": "denolint && tsc --noEmit test/exports/types-test.ts && teru-esm test/exports/*.mjs && c8 npx tap test/*.js"
   },
   "repository": {
     "type": "git",

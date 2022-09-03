@@ -53,10 +53,35 @@ test('ls', function (t) {
     })
   })
 
-  t.test('supports Promise as a result', function (t) {
+  t.test('supports Promise as a succeeding tree result', function (t) {
     // uses cached mocks
     ls('request', '*').then(function (res) {
-      res.should.deep.equal({ 'request@0.0.1': { 'lodash@0.0.2': {} } })
+      res.should.deep.equal({
+        packages: { 'request@0.0.1': { 'lodash@0.0.2': {} } },
+        errors: []
+      })
+      t.end()
+    })
+  })
+
+  t.test('supports Promise as a succeeding flattened result', function (t) {
+    // uses cached mocks
+    ls('request', '*', true).then(function (res) {
+      res.should.deep.equal({
+        packages: ['request@0.0.1', 'lodash@0.0.2'],
+        errors: []
+      })
+      t.end()
+    })
+  })
+
+  t.test('supports Promise as a failing result', function (t) {
+    // uses cached mocks
+    ls('request', '0.0.2').then(function (res) {
+      res.packages.should.deep.equal({})
+      res.errors.length.should.equal(1)
+      res.errors[0].message.should.equal('could not find a satisfactory version for string 0.0.2')
+      res.errors[0].module.should.deep.equal({ name: 'request', parent: {}, version: '0.0.2' })
       t.end()
     })
   })

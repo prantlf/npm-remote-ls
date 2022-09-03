@@ -10,7 +10,9 @@ Examine a package's dependency graph before you install it.
 This is a fork of the original project ([npm/npm-remote-ls](https://github.com/npm/npm-remote-ls)) with the following enhancements:
 
 * Export an ES module for modern projects
-* Export TypeScript types for TypeScript projects
+* Expose TypeScript types for TypeScript projects
+* Return results by a callback or by a promise
+* Let the errors from package loading be inspected
 * Depend on recent NPM packlages without security issues
 * Add option to show licence information (by Michael Hutcherson)
 * Show complete flattened list (by Roberto Aceves)
@@ -42,8 +44,7 @@ npm-remote-ls sha@1.2.4
 
 ### Help!
 
-There are various command line flags you can toggle for `npm-remote-ls`, for
-details run:
+There are various command line flags you can toggle for `npm-remote-ls`, for details run:
 
 ```
 npm-remote-ls --help
@@ -71,8 +72,8 @@ Options:
 ```javascript
 import { ls } from '@prantlf/npm-remote-ls';
 
-const obj = await ls('grunt', 'latest');
-console.log(obj);
+const { packages } = await ls('grunt');
+console.log(packages);
 ```
 
 **Return dependency graph for specific version:**
@@ -91,6 +92,27 @@ var ls = require('@prantlf/npm-remote-ls').ls;
 ls('grunt', '0.1.0', true, function(obj) {
   console.log(obj);
 });
+```
+
+**Check errors with a callback:**
+
+```javascript
+var ls = require('@prantlf/npm-remote-ls').ls;
+
+ls('grunt', '10.0.0', true, function(obj, errors) {
+  console.log(obj)     // Array of packages may not be complete
+  console.log(errors)  // Array of Error instances
+})
+```
+
+**Check errors with a promise:**
+
+```javascript
+var ls = require('@prantlf/npm-remote-ls').ls;
+
+const { packages, errors } = await ls('grunt', '10.0.0', true)
+console.log(packages)  // Array of packages may not be complete
+console.log(errors)    // Array of Error instances
 ```
 
 **Configure to only return production dependencies:**
@@ -116,7 +138,6 @@ var ls = require('@prantlf/npm-remote-ls').ls
 var config = require('@prantlf/npm-remote-ls').config
 
 config({
-  development: true,
   peer: true
 })
 
@@ -125,16 +146,17 @@ ls('grunt-contrib-coffee', 'latest', true, function (obj) {
 })
 ```
 
-**Configure to return license information:**
+**Configuration options:**
 
-```javascript
-var ls = require('@prantlf/npm-remote-ls').ls
-var config = require('@prantlf/npm-remote-ls').config
-
-config({
-  license: true
-})
-```
+| Name          | Type                   | Default   | Description                      |
+| ------------- | ---------------------- | --------- | -------------------------------- |
+| `logger`      | `{ log: msg => void }` | `console` | log errors and progress          |
+| `registry`    | `string`               | `'https://registry.npmjs.org'` | NPM registry URL |
+| `development` | `boolean`              | `true`    | include development dependencies |
+| `optional`    | `boolean`              | `true`    | include optional dependencies    |
+| `peer`        | `boolean`              | `false`   | include peer dependencies        |
+| `license`     | `boolean`              | `false`   | include license information      |
+| `verbose`     | `boolean`              | `false`   | log progress of package loading  |
 
 ## License
 
