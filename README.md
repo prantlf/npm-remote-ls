@@ -7,7 +7,7 @@
 
 Examine a package's dependency graph before you install it.
 
-This is a fork of the original project ([npm/npm-remote-ls](https://github.com/npm/npm-remote-ls)) with the following enhancements:
+This is a fork of the original project ([npm/npm-remote-ls]) with the following enhancements:
 
 * Export an ES module for modern projects
 * Expose TypeScript types for TypeScript projects
@@ -76,6 +76,7 @@ Examples:
   npm-remote-ls grunt 0.1.0
   npm-remote-ls grunt@0.1.0
   npm-remote-ls -f grunt 0.1.0
+  npm-remote-ls grunt -DOfjis
 ```
 
 ## API
@@ -159,18 +160,27 @@ ls('grunt-contrib-coffee', 'latest', true, function (packages) {
 
 **Configuration options:**
 
-| Name          | Type                   | Default   | Description                        |
-| ------------- | ---------------------- | --------- | ---------------------------------- |
-| `logger`      | `{ log: msg => void }` | `console` | log errors and progress            |
-| `registry`    | `string`               | `'https://registry.npmjs.org'` | NPM registry URL |
-| `development` | `boolean`              | `true`    | include development dependencies   |
-| `optional`    | `boolean`              | `true`    | include optional dependencies      |
-| `peer`        | `boolean`              | `false`   | include peer dependencies          |
-| `license`     | `boolean`              | `false`   | include license information        |
-| `verbose`     | `boolean`              | `false`   | log progress of package loading    |
-| `silent`      | `boolean`              | `false`   | suppress error and verbose logging |
+| Name          | Type                   | Default   | Description                               |
+| ------------- | ---------------------- | --------- | ----------------------------------------- |
+| `logger`      | `{ log: msg => void }` | `console` | log errors and progress                   |
+| `registry`    | `string`               | `'https://registry.npmjs.org'` | NPM registry URL     |
+| `development` | `boolean`              | `true`    | include development dependencies          |
+| `optional`    | `boolean`              | `true`    | include optional dependencies             |
+| `peer`        | `boolean`              | `false`   | include peer dependencies                 |
+| `license`     | `boolean`              | `false`   | include license information               |
+| `verbose`     | `boolean`              | `false`   | log progress of package loading           |
+| `silent`      | `boolean`              | `false`   | suppress error and verbose logging        |
 | `strict`      | `boolean`              | `false`   | use non-zero exit code in case of failure |
+
+## Contributing
+
+In lieu of a formal styleguide, take care to maintain the existing coding style. Lint and test your code.
 
 ## License
 
-ISC
+Copyright (c) 2014, npm, Inc. and Contributors<br>
+Copyright (c) 2022, Ferdinand Prantl
+
+Licensed under the ISC license.
+
+[npm/npm-remote-ls]: https://github.com/npm/npm-remote-ls

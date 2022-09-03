@@ -31,7 +31,7 @@ Examples:
   npm-remote-ls grunt 0.1.0
   npm-remote-ls grunt@0.1.0
   npm-remote-ls -f grunt 0.1.0
-  npm-remote-ls grunt -DOj`)
+  npm-remote-ls grunt -DOfjis`)
   process.exit(0)
 }
 
