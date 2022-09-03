@@ -45,8 +45,23 @@ npm-remote-ls sha@1.2.4
 There are various command line flags you can toggle for `npm-remote-ls`, for
 details run:
 
-```bash
+```
 npm-remote-ls --help
+
+npm-remote-ls <pkg-name> [options]
+
+Options:
+      --help         Show help                                         [boolean]
+  -n, --name         package name
+  -v, --version      package version                         [default: "latest"]
+  -e, --verbose      enable verbose logging           [boolean] [default: false]
+  -d, --development  show development dependencies     [boolean] [default: true]
+  -l, --license      show license information         [boolean] [default: false]
+  -o, --optional     show optional dependencies        [boolean] [default: true]
+  -p, --peer         show peer dependencies           [boolean] [default: false]
+  -r, --registry     set an alternative registry url   [default: (registry-url)]
+  -f, --flatten      return flat list of dependencies [boolean] [default: false]
+  -j, --json         return dependencies as JSON      [boolean] [default: false]
 ```
 
 ## API

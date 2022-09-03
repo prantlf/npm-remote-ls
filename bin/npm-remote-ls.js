@@ -49,7 +49,13 @@ var yargs = require('yargs')
     })
     .options('f', {
       alias: 'flatten',
-      description: 'return flat representation of dependencies',
+      description: 'return flat list of dependencies',
+      default: false,
+      boolean: true
+    })
+    .options('j', {
+      alias: 'json',
+      description: 'return dependencies as JSON',
       default: false,
       boolean: true
     })
@@ -76,7 +82,8 @@ if (argv.help || !name) {
   spinner()
   var parsed = npa(name)
   ls(parsed.name, parsed.rawSpec || argv.version, argv.flatten, function (obj) {
-    if (Array.isArray(obj)) console.log(obj.join('\n'))
+    if (argv.json) console.log(JSON.stringify(obj))
+    else if (Array.isArray(obj)) console.log(obj.join('\n'))
     else console.log(treeify.asTree(obj))
   })
 }
